@@ -3,6 +3,6 @@ venv/
 __pycache__/
 *.py[cod]
 db.sqlite3
-node_modules/
+clientapp/node_modules/
 clientapp/dist/
 .env
