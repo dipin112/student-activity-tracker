@@ -1,0 +1,22 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard | Student Activity Tracker</title>
+    <link rel="stylesheet" href="{% static 'Adminapp/dashboard.css' %}">
+  </head>
+  <body>
+    <main class="shell">
+      <p class="eyebrow">ADMIN AREA</p>
+      <h1>Student Activity Tracker</h1>
+      <p class="intro">Review the activity log and see how students are spending their time.</p>
+      <section class="endpoint-grid">
+        <a class="endpoint-card" href="/activities/"><h2>Activities</h2><p>Review or update submitted activities.</p></a>
+        <a class="endpoint-card" href="/summary/"><h2>Summary</h2><p>See activity totals at a glance.</p></a>
+      </section>
+      <p class="hint">Students can add activities from the <a href="http://localhost:5173">activity tracker</a>.</p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Summary | Student Activity Tracker</title>
+  <link rel="stylesheet" href="{% static 'Adminapp/dashboard.css' %}">
+</head>
+
+<body>
+  <main class="shell">
+    <a class="back" href="/dashboard/">Back to dashboard</a>
+    <p class="eyebrow">ACTIVITY SUMMARY</p>
+    <h1>Progress so far</h1>
+    <p class="intro">A quick look at the time students have put into their activities.</p>
+    <section class="metric-grid">
+      <article class="metric-card">
+        <p>Activities logged</p><strong>{{ total_entries }}</strong>
+      </article>
+      <article class="metric-card">
+        <p>Hours recorded</p><strong>{{ total_hours|floatformat:1 }} h</strong>
+      </article>
+      <article class="metric-card">
+        <p>Most active student</p><strong>{{ most_active_user|default:"Not yet available" }}</strong>
+      </article>
+    </section>
+  </main>
+</body>
+
+</html>

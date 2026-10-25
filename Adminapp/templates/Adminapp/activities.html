@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Activities | Student Activity Tracker</title>
+  <link rel="stylesheet" href="{% static 'Adminapp/dashboard.css' %}">
+</head>
+
+<body>
+  <main class="shell">
+    <a class="back" href="/dashboard/">Back to dashboard</a>
+    <p class="eyebrow">ACTIVITY LOG</p>
+    <h1>Activities</h1>
+    <p class="intro">Every activity students have added so far.</p>
+    {% if activities %}
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Activity</th>
+            <th>Hours</th>
+            <th>Added</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in activities %}<tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.activity }}</td>
+            <td>{{ item.hours }} h</td>
+            <td>{{ item.created_at|date:"d M Y, H:i" }}</td>
+            <td class="actions"><a class="edit-button" href="{% url 'activity_edit_page' item.id %}">Edit</a>
+              <form method="post" action="{% url 'activity_delete_page' item.id %}"
+                onsubmit="return confirm('Remove this activity from the log?');">{% csrf_token %}<button
+                  class="delete-button" type="submit">Delete</button></form>
+            </td>
+          </tr>{% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}<div class="empty-card">There are no activities yet. New entries will appear here.</div>{% endif %}
+  </main>
+</body>
+
+</html>
