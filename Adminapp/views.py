@@ -28,7 +28,9 @@ class SuperuserAuthenticationForm(AuthenticationForm):
 class AdminLoginView(LoginView):
     template_name = 'Adminapp/admin_login.html'
     authentication_form = SuperuserAuthenticationForm
-    redirect_authenticated_user = True
+    # Keep the root URL on the login screen, including when an admin has an
+    # active session. The dashboard remains available after signing in.
+    redirect_authenticated_user = False
     next_page = reverse_lazy('dashboard')
 
 
