@@ -26,7 +26,7 @@ class SuperuserAuthenticationForm(AuthenticationForm):
 
 
 class AdminLoginView(LoginView):
-    template_name = 'Adminapp/admin_login.html'
+    template_name = 'admin_login.html'
     authentication_form = SuperuserAuthenticationForm
     # Keep the root URL on the login screen, including when an admin has an
     # active session. The dashboard remains available after signing in.
@@ -37,7 +37,7 @@ class AdminLoginView(LoginView):
 @user_passes_test(lambda user: user.is_superuser, login_url='login')
 def dashboard(request):
     """A simple server-rendered page for viewing the Django backend."""
-    return render(request, 'Adminapp/dashboard.html')
+    return render(request, 'dashboard.html')
 
 
 def summary_data():
@@ -55,7 +55,7 @@ def summary_data():
 
 @require_GET
 def activities_page(request):
-    return render(request, 'Adminapp/activities.html', {'activities': Activity.objects.all()})
+    return render(request, 'activities.html', {'activities': Activity.objects.all()})
 
 
 @require_http_methods(['GET', 'POST'])
@@ -69,7 +69,7 @@ def activity_edit_page(request, activity_id):
                 setattr(entry, field, value)
             entry.save()
             return redirect('activities_page')
-    return render(request, 'Adminapp/activity_form.html', {'entry': entry, 'errors': errors})
+    return render(request, 'activity_form.html', {'entry': entry, 'errors': errors})
 
 
 @require_http_methods(['POST'])
@@ -80,7 +80,7 @@ def activity_delete_page(request, activity_id):
 
 @require_GET
 def summary_page(request):
-    return render(request, 'Adminapp/summary.html', summary_data())
+    return render(request, 'summary.html', summary_data())
 
 
 def api_response(payload, status=200):

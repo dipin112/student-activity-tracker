@@ -19,7 +19,7 @@ from django.urls import include, path
 from Adminapp import views
 
 # Keep Django's built-in superuser authentication, with the login page supplied by Adminapp.
-admin.site.login_template = 'Adminapp/admin_login.html'
+admin.site.login_template = 'admin_login.html'
 
 urlpatterns = [
     path('', views.AdminLoginView.as_view(), name='login'),
